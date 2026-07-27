@@ -5,8 +5,8 @@ import pandas
 import random
 
 #email details
-dummy_email = os.environ.get(dummy_email)
-dummy_password = os.environ.get(dummy_password)
+my_email = os.environ.get(my_email)
+my_password = os.environ.get(my_password)
 #get the time for now
 today = datetime.now()
 today_tuple= (today.month,today.day)
@@ -14,7 +14,7 @@ today_tuple= (today.month,today.day)
 #use panda to read from csv file
 data = pandas.read_csv("birthdays.csv")
 
-#using dictionary to comprehension to create a dictionary
+#creating a dictionary
 birthday_dict = {(data_row.month,data_row.day): data_row for (index, data_row) in data.iterrows()}
 #checking to see if today matches birthday
 if today_tuple in birthday_dict:
@@ -30,7 +30,7 @@ if today_tuple in birthday_dict:
     #sending the birthday message as email
     with smtplib.SMTP("smtp.gmail.com") as connection:
         connection.starttls()
-        connection.login(user=dummy_email, password=dummy_password)
-        connection.sendmail(from_addr=dummy_email,
-                            to_addrs="micahkova4@gmail.com",
+        connection.login(user=my_email, password=my_password)
+        connection.sendmail(from_addr=my_email,
+                            to_addrs=birthday_person["email"],
                             msg=f"Subject:Happy Birthday!!!\n\n{contents}!")
