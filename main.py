@@ -5,8 +5,8 @@ import pandas
 import random
 
 #email details
-my_email = os.environ.get(my_email)
-my_password = os.environ.get(my_password)
+my_email = os.environ.get("my_email")
+my_password = os.environ.get("my_password")
 #get the time for now
 today = datetime.now()
 today_tuple= (today.month,today.day)
